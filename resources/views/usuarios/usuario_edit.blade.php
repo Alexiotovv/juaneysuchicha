@@ -32,6 +32,29 @@
                 <label for="">nombre usuario</label>
                 <input type="text" class="form-control" name="name" value="{{$obj->name}}" maxlength="100" required>
             </div>
+
+            <div class="col-md-3">
+                <label for="">Nombres</label>
+                <input type="text" class="form-control" name="nombres" id="nomrbes" value="{{$obj->nombres}}" maxlength="150" required>
+                
+            </div>
+            <div class="col-md-3">
+                <label for="">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{$obj->apellidos}}" maxlength="150" required>
+            </div>
+            <div class="col-md-3">
+                <label for="">Nro Stand</label>
+                <input type="text" class="form-control" name="nro_stand" id="nro_stand" value="{{$obj->nro_stand}}" maxlength="150" required>
+            </div>
+            <div class="col-md-3">
+                <label for="">Procedencia</label>
+                <input type="text" class="form-control" name="procedencia" id="procedencia" value="{{$obj->procedencia}}" maxlength="150" required>
+            </div>
+            <div class="col-md-3">
+                <label for="">Linea Artesanal</label>
+                <input type="text" class="form-control" name="linea_artesanal" id="nro_stand" value="{{$obj->linea_artesanal}}" maxlength="150" required>
+            </div>
+
             <div class="col-md-3">
                 <label for="">tipo</label>
                 <select name="tipo" id="tipo" class="form-select">

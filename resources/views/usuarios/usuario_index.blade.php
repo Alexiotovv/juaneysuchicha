@@ -32,6 +32,11 @@
                     <th>nombre_usuario</th>
                     <th>tipo_usuario</th>
                     <th>correo</th>
+                    <th>nombres</th>
+                    <th>apellidos</th>
+                    <th>nro_stand</th>
+                    <th>procedencia</th>
+                    <th>linea_artesanal</th>
                     
                 </tr>
             </thead>
@@ -45,6 +50,11 @@
                         <td>{{ $usu->name }}</td>
                         <td>{{ $usu->tipo }}</td>
                         <td>{{ $usu->email }}</td>
+                        <td>{{ $usu->nombres }}</td>
+                        <td>{{ $usu->apellidos }}</td>
+                        <td>{{ $usu->nro_stand }}</td>
+                        <td>{{ $usu->procedencia }}</td>
+                        <td>{{ $usu->linea_artesanal }}</td>
                     </tr>
                 @endforeach
             </tbody>

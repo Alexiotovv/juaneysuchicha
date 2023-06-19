@@ -41,11 +41,11 @@
 
             <div class="col-md-3">
                 <h5>Precio Venta</h5>
-                <input type="number" id="precio_venta" step="0.1" name="precio_venta" class="form-control" required>
+                <input type="number" id="precio_venta" step="0.01" name="precio_venta" class="form-control" required>
             </div>
             <div class="col-md-2">
                 <h5>Cantidad</h5>
-                <input type="number" step="0.10" id="cantidad" name="cantidad" class="form-control" value="1.00" required>
+                <input type="number" step="0.01" id="cantidad" name="cantidad" class="form-control" value="1.00" required>
             </div>
             <div class="col-md-3">
                 <h5>Total</h5>
