@@ -53,8 +53,7 @@
                 </select>
             </div>
 
-            
-            
+
             <div class="row">
                 <div class="col-md-4">
                     <br>
@@ -67,5 +66,6 @@
     
 @endsection
 @section('extra_js')
+    
     <script src="../../../app_js/usuarios.js"></script>
 @endsection

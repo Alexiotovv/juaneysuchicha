@@ -34,6 +34,7 @@ Route::get('/home',function(){
 //Visitas
 Route::get('/visitas/create', [VisitasController::class,'create'])->middleware(['auth'])->name('visitas.create');
 Route::post('/visitas/store', [VisitasController::class,'store'])->middleware(['auth'])->name('visitas.store');
+Route::get('/visitas/consultas', [VisitasController::class,'consultas'])->middleware(['auth'])->name('visitas.consultas');
 
 //Ventas
 Route::get('/ventas/create', [VentasController::class,'create'])->middleware(['auth'])->name('ventas.create');

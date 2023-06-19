@@ -6,8 +6,8 @@
 @endsection
 
 @section('content')
-    @if (session()->has('guardo')=='si')
-        <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2" id="mensaje" style="width:300px;position:absolute; ">
+    {{-- @if (session()->has('guardo')=='si') --}}
+        <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2" id="mensaje" style="width:300px;position:absolute;" hidden>
             <div class="d-flex align-items-center">
                 <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
                 </div>
@@ -19,10 +19,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-    @endif
+    {{-- @endif --}}
 
 
-    <form id="formVisitas" action="{{route('visitas.store')}}" method="POST">
+    <form id="formVisitas" method="POST">
         @csrf
         <h4 style="text-align: center;">REGISTRO DE VISITAS</h4>
         <div class="row"  style="place-content:center">
@@ -54,7 +54,7 @@
              <div class="col-md-3">
                 <h5>Sexo</h5>
                 <select name="sexo" id="sexo" class="form-select">
-                    <option value="MASCULINO">MASCULINIO</option>
+                    <option value="MASCULINO">MASCULINO</option>
                     <option value="FEMENINO">FEMENINO</option>
                 </select>
              </div>
@@ -76,6 +76,19 @@
                     <option value="TURISTA">TURISTA</option>
                 </select>
              </div>
+             <div class="col-md-3">
+                <h5>Dpto.</h5>
+                <input type="text" class="form-control" name="departamento" id="departamento">
+             </div>
+             <div class="col-md-3">
+                <h5>Provincia</h5>
+                <input type="text" class="form-control" name="provincia" id="provincia">
+             </div>
+             <div class="col-md-3">
+                <h5>Distrito</h5>
+                <input type="text" class="form-control" name="distrito" id="distrito">
+             </div>
+
              <div class="row" id="seccion_turista" hidden>
                  <div class="col-md-4">
                      <h5>Pais</h5>
@@ -129,7 +142,12 @@
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <br>
-                <button type="submit" class="btn btn-danger" style="font-size: 25px;">Guardar</button>
+                <button type="submit" class="btn btn-danger" id="btnGuardarVisita" style="font-size: 25px;">Guardar</button>
+                <div class="text-center" id="spinner_guardar" hidden>
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
@@ -149,6 +167,64 @@
     <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
 
     <script>
+            
+
+        $("#btnGuardarVisita").on("click",function (e) { 
+            if ($("#dni").val()=='' || $("#nombres").val()==''||$("#apellido_paterno").val()=='' ||$("#apellido_materno").val()=='') {
+                
+            }else{
+                e.preventDefault();
+                ds=$("#formVisitas").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "/visitas/store",
+                    data: ds,
+                    dataType: "json",
+                    beforeSend: function() {
+                        $("#spinner_guardar").prop('hidden',false);
+                    },
+                    success: function (response) {
+                        // $("#mensaje").css('display',t)
+                        $("#mensaje").prop('hidden',false)
+                        desaparecer_mensaje();
+                        LimpiarForm();
+                        $("#spinner_guardar").prop('hidden',true);
+                        $.ajax({
+                            type: "GET",
+                            url: "/visitas/consultas",
+                            dataType: "json",
+                            success: function (response) {
+                                
+                                $("#cant_free").val(response.cant_free);
+                                $("#cant_vip").val(response.cant_vip);
+                            }
+                        });
+                    },
+                    error: function (response) {  
+                        $("#spinner_guardar").prop('hidden',true);
+                        alert('error'+response);
+                    }
+
+
+                });
+
+            }
+         })
+
+
+         function LimpiarForm() { 
+            $("#dni").val('');
+            $("#nombres").val('');
+            $("#apellido_paterno").val('');
+            $("#apellido_materno").val('');
+            $("#departamento").val('');
+            $("#provincia").val('');
+            $("#distrito").val('');
+            $("#dni").focus();
+          }
+
+
+
         $('.single-select').select2({
             theme: 'bootstrap4',
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
@@ -172,16 +248,23 @@
             e.preventDefault();
             $.ajax({
                 type: "GET",
-                url: "https://dniruc.apisperu.com/api/v1/dni/"+ $("#dni").val() +"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsZXhpb3RvdnZAZ21haWwuY29tIn0.lI0TpAOzB02VvEjL01-oofG-Zk9glBYVfE6gJ766H0M",
+                // url: "https://dniruc.apisperu.com/api/v1/dni/"+ $("#dni").val() +"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsZXhpb3RvdnZAZ21haWwuY29tIn0.lI0TpAOzB02VvEjL01-oofG-Zk9glBYVfE6gJ766H0M",
+                url: "https://apiperu.dev/api/dni/"+ $("#dni").val() +"?api_token=77694cf849cca667ae28f9edbedd38c1314406a2465ee3758ff77ba9e894b4d5",
                 // data: "data",
                 dataType: "json",
                 beforeSend: function() {
                         $("#spinner").prop('hidden',false);
                 },
                 success: function (response) {
-                    $("#nombres").val(response['nombres']);
-                    $("#apellido_paterno").val(response['apellidoPaterno']);
-                    $("#apellido_materno").val(response['apellidoMaterno']);
+                    console.log(response);
+                    $("#nombres").val(response.data['nombres']);
+                    $("#apellido_paterno").val(response.data['apellido_paterno']);
+                    $("#apellido_materno").val(response.data['apellido_materno']);
+                    $("#fecha_nac").val(response.data['fecha_nacimiento']);
+                    $("#sexo").val(response.data['sexo']).change();
+                    $("#departamento").val(response.data['departamento']);
+                    $("#provincia").val(response.data['provincia']);
+                    $("#distrito").val(response.data['distrito']);
                     $("#spinner").prop('hidden',true);
                     
                 },
@@ -203,9 +286,11 @@
                     document.getElementById("hora_reg").value = hora;    
             }
 
-            setTimeout(function(){
-                $("#mensaje").css('display','none');
-            }, 3000);
+            function desaparecer_mensaje() { 
+                setTimeout(function(){
+                    $("#mensaje").prop('hidden',true);
+                }, 3000);
+             }
 
             var fecha = new Date();
             document.getElementById("fecha_reg").value = fecha.toJSON().slice(0, 10);

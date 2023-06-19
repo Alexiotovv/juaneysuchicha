@@ -46,7 +46,9 @@ class VisitasController extends Controller
         $visitas->fecha_reg=request('fecha_reg');
         $visitas->hora_reg=request('hora_reg');
         $visitas->tipo_visita=request('tipo_visita');
-        
+        $visitas->sexo=request('departamento');
+        $visitas->sexo=request('provincia');
+        $visitas->sexo=request('distrito');
         $visitas->sexo=request('sexo');
         $visitas->origen=request('origen');
         $visitas->pais=request('pais');
@@ -58,7 +60,8 @@ class VisitasController extends Controller
         $visitas->user_register=auth()->user()->name;
         $visitas->save();
         
-        return redirect()->route('visitas.create')->with('guardo','si');
+        return response()->json(['Msje'=>'ok']);
+        // return redirect()->route('visitas.create')->with('guardo','si');
 
 
     }
@@ -66,6 +69,17 @@ class VisitasController extends Controller
     /**
      * Display the specified resource.
      */
+    public function consultas() {
+        $cant_vip=DB::table('visitas')
+        ->where('tipo_visita','=','VIP')
+        ->count();
+        $cant_free=DB::table('visitas')
+        ->where('tipo_visita','=','FREE')
+        ->count();
+
+        return response()->json(['cant_vip'=>$cant_vip,'cant_free'=>$cant_free]);
+    }
+
     public function show(visitas $visitas)
     {
         //

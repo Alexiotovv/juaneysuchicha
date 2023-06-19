@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('nombres', 250)->nullable()->default('');
             $table->string('apellido_paterno', 250)->nullable()->default('');
             $table->string('apellido_materno', 250)->nullable()->default('');
+            $table->string('departamento', 250)->nullable()->default('');
+            $table->string('provincia', 250)->nullable()->default('');
+            $table->string('distrito', 250)->nullable()->default('');
             $table->date('fecha_nac')->nullable();
             $table->date('fecha_reg')->nullable();
             $table->string('hora_reg', 100)->nullable()->default('');
