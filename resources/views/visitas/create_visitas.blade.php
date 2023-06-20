@@ -35,6 +35,17 @@
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center;">
+                        <br>
+                        <button type="submit" class="btn btn-danger" id="btnGuardarVisita" style="font-size: 25px;width:100%">Guardar</button>
+                        <div class="text-center" id="spinner_guardar" hidden>
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -140,17 +151,7 @@
              </div>
              <br>
         </div>
-        <div class="row">
-            <div class="col-md-12" style="text-align: center;">
-                <br>
-                <button type="submit" class="btn btn-danger" id="btnGuardarVisita" style="font-size: 25px;">Guardar</button>
-                <div class="text-center" id="spinner_guardar" hidden>
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </form>
     <div class="row">
         <h5>Número de visitas</h5>
