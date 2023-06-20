@@ -22,7 +22,7 @@
     {{-- @endif --}}
 
 
-    <form id="formVisitas" method="POST">
+    <form id="formVisitas">
         @csrf
         <h4 style="text-align: center;">REGISTRO DE VISITAS</h4>
         <div class="row"  style="place-content:center">
@@ -37,6 +37,7 @@
                 </div>
             </div>
         </div>
+
         <br>
         <div class="row">
              <div class="col-md-4">
@@ -163,15 +164,16 @@
         </div>
     </div>
 @endsection
+
 @section('extra_js')
     <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
 
     <script>
-            
 
         $("#btnGuardarVisita").on("click",function (e) { 
+            e.preventDefault();
             if ($("#dni").val()=='' || $("#nombres").val()==''||$("#apellido_paterno").val()=='' ||$("#apellido_materno").val()=='') {
-                
+                alert("Complete los datos por favor");
             }else{
                 e.preventDefault();
                 ds=$("#formVisitas").serialize();
@@ -233,8 +235,8 @@
         });
     </script>
     <script>
+
         $("#origen").on("change",function () {
-            
             if ($("#origen").val()=='TURISTA') {
                 $("#seccion_turista").prop('hidden',false);
             }else{
@@ -242,10 +244,18 @@
             }
         })
         
-
         $("#dni").focus();
-        $("#btnConsultar").on("click",function (e) {
-            e.preventDefault();
+
+        $("#dni").keypress(function(e) {
+            if (e.which === 13) {
+                e.preventDefault();
+                // alert("presionó enter");
+                funcion_consultar();
+            }
+        });
+
+        function funcion_consultar() { 
+            
             $.ajax({
                 type: "GET",
                 // url: "https://dniruc.apisperu.com/api/v1/dni/"+ $("#dni").val() +"?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsZXhpb3RvdnZAZ21haWwuY29tIn0.lI0TpAOzB02VvEjL01-oofG-Zk9glBYVfE6gJ766H0M",
@@ -275,7 +285,12 @@
                 }
                 
             });
+        }
+        $("#btnConsultar").on("click",function (e) {
+            e.preventDefault();
+            funcion_consultar();
         })
+
 
     </script>
     <script>
