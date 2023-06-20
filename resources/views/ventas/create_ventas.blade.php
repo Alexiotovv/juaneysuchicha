@@ -56,7 +56,14 @@
                 <h5>Fecha</h5>
                 <input type="date" class="form-control" name="fecha" id="fecha" readonly>
              </div>
-             
+             <div class="col-md-4">
+                <h5>Seleccione Usuario del Artesano</h5>
+                <select name="usuario_artesano" id="usuario_artesano" class="single-select">
+                    @foreach ($usuario_artesano as $ua)
+                        <option value="{{$ua->id}}">Usuario: {{$ua->name}} / Nombres: {{$ua->nombres}} {{$ua->apellidos}} / Stand N°: {{$ua->nro_stand}}</option>
+                    @endforeach
+                </select>
+             </div>
              <br>
         </div>
         <div class="row">

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\ventas;
 use App\Models\productos;
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use DB;
 class VentasController extends Controller
 {
     /**
@@ -22,7 +23,8 @@ class VentasController extends Controller
     public function create()
     {
         $productos=productos::all();
-        return view('ventas.create_ventas',compact('productos'));
+        $usuario_artesano=User::where('tipo','=','ARTESANIAS')->get();
+        return view('ventas.create_ventas',compact('productos','usuario_artesano'));
     }
 
     /**
@@ -34,7 +36,8 @@ class VentasController extends Controller
         $obj->fecha=request('fecha');
         $obj->precio_venta=request('precio_venta');
         $obj->producto_id=request('producto');
-        $obj->user_id=auth()->user()->id;
+        // $obj->user_id=auth()->user()->id;
+        $obj->user_id=request('usuario_artesano');
         $obj->user=auth()->user()->name;
         $obj->save();
         return redirect()->route('ventas.create')->with('guardo','si');
