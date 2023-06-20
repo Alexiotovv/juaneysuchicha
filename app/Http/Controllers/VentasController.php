@@ -33,6 +33,7 @@ class VentasController extends Controller
     public function store(Request $request)
     {
         $obj=new ventas();
+        
         $obj->fecha=request('fecha');
         $obj->precio_venta=request('precio_venta');
         $obj->producto_id=request('producto');

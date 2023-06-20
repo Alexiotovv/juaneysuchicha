@@ -41,7 +41,7 @@ class ProductosController extends Controller
     public function show(productos $productos)
     {
         $productos=DB::table('productos')
-        ->select('productos.producto')
+        ->select('productos.producto','productos.id')
         ->get();
         return response()->json($productos);
     }
