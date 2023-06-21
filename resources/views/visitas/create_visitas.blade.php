@@ -27,9 +27,9 @@
         <h4 style="text-align: center;">REGISTRO DE VISITAS</h4>
         <div class="row"  style="place-content:center">
             <div class="col-md-4" style="text-align-last: center;">
-                <h2 style="text-align: center;">INGRESE DNI</h3>
-                <input type="text" class="form-control" name="dni" id="dni" style="height: 90px;font-size:50px;text-align:center" required>
-                <a href="" id="btnConsultar" class="btn btn-warning" style="width:100%;font-size:30px">Consultar</a>
+                <h2 style="text-align: center;">DOCUMENTO IDENTIDAD</h3>
+                <input type="number" class="form-control" name="dni" id="dni" style="height: 90px;font-size:50px;text-align:center" required>
+                {{-- <a href="" id="btnConsultar" class="btn btn-warning" style="width:100%;font-size:30px">Consultar</a> --}}
                 <div class="text-center" id="spinner" hidden>
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">Loading...</span>
@@ -173,11 +173,18 @@
 
         $("#btnGuardarVisita").on("click",function (e) { 
             e.preventDefault();
-            if ($("#dni").val()=='' || $("#nombres").val()==''||$("#apellido_paterno").val()=='' ||$("#apellido_materno").val()=='') {
-                alert("Complete los datos por favor");
+            // if ($("#dni").val()=='' || $("#nombres").val()==''||$("#apellido_paterno").val()=='' ||$("#apellido_materno").val()=='') {
+            if ($("#dni").val()=='') {
+                alert("Complete un número de dni o ");
             }else{
                 e.preventDefault();
-                ds=$("#formVisitas").serialize();
+                GuardarForm();
+
+            }
+         })
+
+         function GuardarForm(){
+            ds=$("#formVisitas").serialize();
                 $.ajax({
                     type: "POST",
                     url: "/visitas/store",
@@ -210,10 +217,7 @@
 
 
                 });
-
-            }
-         })
-
+         }
 
          function LimpiarForm() { 
             $("#dni").val('');
@@ -251,7 +255,8 @@
             if (e.which === 13) {
                 e.preventDefault();
                 // alert("presionó enter");
-                funcion_consultar();
+                // funcion_consultar();
+                GuardarForm();
             }
         });
 
@@ -287,10 +292,10 @@
                 
             });
         }
-        $("#btnConsultar").on("click",function (e) {
-            e.preventDefault();
-            funcion_consultar();
-        })
+        // $("#btnConsultar").on("click",function (e) {
+        //     e.preventDefault();
+        //     funcion_consultar();
+        // })
 
 
     </script>
