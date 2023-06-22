@@ -94,7 +94,7 @@
         <div class="row">
            <div class="col-md-4">
                <label for="">CANTIDAD DE REGISTROS</label>
-               <input type="text" class="form-control" id="cant_free" value="{{$cant}}" disabled>
+               <input type="text" class="form-control" id="cant" value="{{$cant}}" disabled>
            </div>
            
        </div>
@@ -163,9 +163,10 @@
                     },
                     success: function (response) {
                         // $("#mensaje").css('display',t)
+                        console.log(response);
+                        $("#cant").val(response.cant);
                         $("#mensaje").prop('hidden',false)
                         desaparecer_mensaje();
-                        // $("#cant_free").val(response.cant_free);
                         // $("#cant_vip").val(response.cant_vip);
                         LimpiarForm();
                         $("#spinner_guardar").prop('hidden',true);
@@ -183,7 +184,7 @@
 
          function LimpiarForm(){
             $("#cantidad").val('1');
-            $("#cantidad").focus();
+            // $("#cantidad").focus();
          };
 
 
