@@ -66,6 +66,8 @@
                                 
                                 <li> <a href="{{route('visitas.create')}}"><i class="bx bx-right-arrow-alt"></i>Registrar Visitas</a>
                                 </li>
+                                <li> <a href="{{route('visitascontador.create')}}"><i class="bx bx-right-arrow-alt"></i>Registrar Visitas v2</a>
+                                </li>
                                 <li> <a href="{{route('ventas.create')}}"><i class="bx bx-right-arrow-alt"></i>Registrar Ventas</a>
                                 </li>
                             @else

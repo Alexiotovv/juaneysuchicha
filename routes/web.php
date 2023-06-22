@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VisitasController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\VisitascontadorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +36,10 @@ Route::get('/home',function(){
 Route::get('/visitas/create', [VisitasController::class,'create'])->middleware(['auth'])->name('visitas.create');
 Route::post('/visitas/store', [VisitasController::class,'store'])->middleware(['auth'])->name('visitas.store');
 Route::get('/visitas/consultas', [VisitasController::class,'consultas'])->middleware(['auth'])->name('visitas.consultas');
+
+//Visitas Contador
+Route::get('/visitascontador/create', [VisitascontadorController::class,'create'])->middleware(['auth'])->name('visitascontador.create');
+Route::post('/visitascontador/store', [VisitascontadorController::class,'store'])->middleware(['auth'])->name('visitascontador.store');
 
 //Ventas
 Route::get('/ventas/create', [VentasController::class,'create'])->middleware(['auth'])->name('ventas.create');
