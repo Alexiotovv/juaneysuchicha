@@ -55,14 +55,6 @@
             </div>
 
             <div class="col-sm-3">
-                <label for="" style="font-size: 17px;">ORIGEN</label>
-                <select name="origen" id="origen" class="form-select">
-                    <option value="LOCAL">LOCAL</option>
-                    <option value="NACIONAL">NACIONAL</option>
-                    <option value="EXTRANJERO">EXTRANJERO</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
                 <label for="" style="font-size: 17px;">ETAPA DE VIDA</label>
                 <select name="etapa_vida" id="etapa_vida" class="form-select">
                     <option value="JOVEN">JOVEN</option>
@@ -72,13 +64,19 @@
                 </select>
             </div>
 
-            <hr>
-            <br>
+            <div class="col-sm-3">
+                <label for="" style="font-size: 17px;">ORIGEN</label>
+                <select name="origen" id="origen" class="form-select">
+                    <option value="LOCAL">LOCAL</option>
+                    <option value="NACIONAL">NACIONAL</option>
+                    <option value="EXTRANJERO">EXTRANJERO</option>
+                </select>
+            </div>
+            
         </div>
         {{-- joven --}}
 
-        
-
+    
 
         <br>
         <div class="col-md-4">
