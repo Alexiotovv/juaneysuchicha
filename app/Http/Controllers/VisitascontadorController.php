@@ -21,7 +21,8 @@ class VisitascontadorController extends Controller
     public function create()
     {
         $cant=visitascontador::count();
-        return view('visitas.create_visitasv2',['cant'=>$cant]);
+        $personas=visitascontador::sum('cantidad');
+        return view('visitas.create_visitasv2',['cant'=>$cant,'personas'=>$personas]);
     }
 
     /**
@@ -43,8 +44,9 @@ class VisitascontadorController extends Controller
         $visitas->save();
 
         $cant=visitascontador::count();
+        $personas=visitascontador::sum('cantidad');
        
-        return response()->json(['cant'=>$cant]);
+        return response()->json(['cant'=>$cant,'personas'=>$personas]);
     }
 
     /**

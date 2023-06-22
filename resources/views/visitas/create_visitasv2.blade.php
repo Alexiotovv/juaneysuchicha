@@ -28,7 +28,7 @@
         {{-- niño --}}
         <div class="row" >
             <a type="submit" class="btn btn-danger btn-sm" id="btnGuardarVisita">Guardar</a>
-            <div class="text-center" id="spinner" hidden>
+            <div class="text-center" id="spinner_guardar" hidden>
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -96,7 +96,10 @@
                <label for="">CANTIDAD DE REGISTROS</label>
                <input type="text" class="form-control" id="cant" value="{{$cant}}" disabled>
            </div>
-           
+           <div class="col-md-4">
+            <label for="">CANTIDAD DE PERSONAS</label>
+            <input type="text" class="form-control" id="personas" value="{{$personas}}" disabled>
+        </div>
        </div>
     {{-- <div class="row">
         <h5>Número de visitas</h5>
@@ -165,6 +168,7 @@
                         // $("#mensaje").css('display',t)
                         console.log(response);
                         $("#cant").val(response.cant);
+                        $("#personas").val(response.personas);
                         $("#mensaje").prop('hidden',false)
                         desaparecer_mensaje();
                         // $("#cant_vip").val(response.cant_vip);
